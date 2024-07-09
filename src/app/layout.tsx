@@ -3,11 +3,13 @@ import { Inter } from "next/font/google";
 import "./globals.scss";
 import { ThemeProvider } from "@/components/theme-provider";
 import ReduxProvider from "@/redux/provider";
+import NavbarContainer from "@/Container/Layout/NavbarContainer";
+import { ViewTransitions } from "next-view-transitions";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Template Nextjs",
+  title: "MIMA COUTURE",
   description:
     "Esta plantilla es ideal para desarrolladores que desean crear una aplicación web con Next.js.",
 };
@@ -18,17 +20,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ReduxProvider>{children}</ReduxProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="es" suppressHydrationWarning>
+        <body className={inter.className}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ReduxProvider>
+              <NavbarContainer />
+              {children}
+            </ReduxProvider>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

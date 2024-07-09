@@ -1,13 +1,15 @@
 import { GoogleSheetsServices } from "@/services/Products.services";
 import AppComponent from "./page.client";
+import { ProductsType } from "@/types/Products.type";
 
 const AppContainer = async () => {
   const googleSheetsServices = new GoogleSheetsServices();
-  const getProducts = await googleSheetsServices.GetProducts();
+  const getProducts =
+    (await googleSheetsServices.GetProducts()) as ProductsType[];
 
-  return <pre>{JSON.stringify(getProducts, null, 2)}</pre>;
+  if (getProducts) return <AppComponent products={getProducts} />;
 
-  return <AppComponent />;
+  return;
 };
 
 export default AppContainer;
