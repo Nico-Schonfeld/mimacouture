@@ -12,7 +12,7 @@ const NavbarComponent = () => {
       <nav className="w-full h-full container mx-auto flex items-center justify-between gap-5 py-5">
         <LogoMima action={() => router.push("/")} className="cursor-pointer" />
 
-        <ul className="flex items-center gap-5 uppercase">
+        <ul className="hidden md:flex items-center gap-5 uppercase ">
           <li>
             <Link href="/quien-soy">Quien soy</Link>
           </li>
